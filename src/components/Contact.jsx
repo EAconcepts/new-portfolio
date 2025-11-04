@@ -1,14 +1,31 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import emailjs from '@emailjs/browser'
 import { site } from '../data/site'
 
 export default function Contact(){
-  const [values, setValues] = useState({ name:'', email:'', message:'' })
-  const onChange = e => setValues(v => ({ ...v, [e.target.name]: e.target.value }))
+  const form = useRef()
+  const [sending, setSending] = useState(false)
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState(false)
 
   const onSubmit = (e) => {
     e.preventDefault()
-    const mailto = `mailto:${site.email}?subject=Portfolio%20Message%20from%20${encodeURIComponent(values.name)}&body=${encodeURIComponent(values.message + '\n\nFrom: ' + values.email)}`
-    window.location.href = mailto
+    setSending(true)
+    setError(false)
+    setSent(false)
+
+    emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID, // get this from emailjs.com
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // get this from emailjs.com
+      form.current, // get this from emailjs.com
+      import.meta.env.VITE_EMAILJS_PROJECT_ID, // get this from emailjs.com
+    ).then(() => {
+      setSent(true)
+      setSending(false)
+    }).catch(() => {
+      setError(true)
+      setSending(false)
+    })
   }
 
   return (
@@ -19,18 +36,22 @@ export default function Contact(){
           <div className="section-sub">Let’s discuss your project or team</div>
         </div>
 
-        <form className="form" onSubmit={onSubmit}>
-          <input className="input" placeholder="Your name" name="name" value={values.name} onChange={onChange} required />
-          <input className="input" type="email" placeholder="Email" name="email" value={values.email} onChange={onChange} required />
-          <textarea className="textarea" placeholder="Message" name="message" value={values.message} onChange={onChange} required />
+        <form className="form" ref={form} onSubmit={onSubmit}>
+          <input className="input" placeholder="Your name" name="user_name" required />
+          <input className="input" type="email" placeholder="Email" name="user_email" required />
+          <textarea className="textarea" placeholder="Message" name="message" required />
           <div className="cta-row">
-            <button className="btn" type="submit">Send Message</button>
+            <button className="btn" type="submit" disabled={sending}>
+              {sending ? 'Sending...' : 'Send Message'}
+            </button>
             <div className="pills">
               {(site.socials || []).map(s => (
                 <a key={s.href} className="pill" href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
               ))}
             </div>
           </div>
+          {sent && <div className="success-message">Your message has been sent!</div>}
+          {error && <div className="error-message">Something went wrong. Please try again.</div>}
         </form>
       </div>
     </section>
