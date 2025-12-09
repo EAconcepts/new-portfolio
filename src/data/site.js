@@ -54,7 +54,7 @@ export const site = {
     {
       title: "Penstribe Publishing Automation",
       tagline: "Upload → Edit → Publish pipeline with Cloudinary",
-      stack: ["Node", "Express", "MySQL", "Cloudinary"],
+      stack: ["Node", "Express", "MySQL", "ReactJs", "Typescript"],
       highlights: [
         "Admin workflow and status tracking",
         "Automated emails and invoices",
@@ -68,17 +68,17 @@ export const site = {
     },
     {
       title: "Sahara Marketplace",
-      tagline: "Upload → Edit → Publish pipeline with Cloudinary",
-      stack: ["Node", "Express", "MySQL", "Cloudinary"],
+      tagline: "E-commerce marketplace for authentic African products, featuring admin workflows, automated emails, and scalable storage.",
+      stack: ["NextJs", "Tailwind CSS",],
       highlights: [
-        "Admin workflow and status tracking",
-        "Automated emails and invoices",
-        "Scalable file storage",
-        "Cron jobs for email reminders",
+        "Vendor dashboard for product and order management",
+        "User dashboard for order tracking and history",
+        "Shopping cart and checkout functionality",
+        "Payment gateway integration"
       ],
       links: {
-        live: "http://penstribeautomate.com/",
-        repo: "https://github.com/EAconcepts/penstribe-automation",
+        live: "https://sahara-markeplace.vercel.app/",
+        repo: "https://github.com/EAconcepts/sahara-markeplace",
       },
     },
   ],
@@ -96,7 +96,7 @@ export const site = {
     },
     {
       org: "FITI",
-      role: "Head, Enterprise Solution Dev & QA",
+      role: "Head, Enterprise Solution Dev & QA Officer",
       period: "February 2024 — February 2025",
       bullets: [
         "Led development of client solutions",
