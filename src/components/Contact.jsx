@@ -1,6 +1,13 @@
 import { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
 import { site } from '../data/site'
+import { FaGithub, FaLinkedin, FaXTwitter } from 'react-icons/fa6'
+
+const iconMap = {
+  FaGithub: FaGithub,
+  FaLinkedin: FaLinkedin,
+  FaXTwitter: FaXTwitter,
+}
 
 export default function Contact(){
   const form = useRef()
@@ -15,10 +22,10 @@ export default function Contact(){
     setSent(false)
 
     emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID, // get this from emailjs.com
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // get this from emailjs.com
-      form.current, // get this from emailjs.com
-      import.meta.env.VITE_EMAILJS_PROJECT_ID, // get this from emailjs.com
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PROJECT_ID,
     ).then(() => {
       setSent(true)
       setSending(false)
@@ -33,7 +40,7 @@ export default function Contact(){
       <div className="container">
         <div className="section-header">
           <h2 className="section-title">Contact</h2>
-          <div className="section-sub">Let’s discuss your project or team</div>
+          <div className="section-sub">Let's discuss your project or team</div>
         </div>
 
         <form className="form" ref={form} onSubmit={onSubmit}>
@@ -44,10 +51,23 @@ export default function Contact(){
             <button className="btn" type="submit" disabled={sending}>
               {sending ? 'Sending...' : 'Send Message'}
             </button>
-            <div className="pills">
-              {(site.socials || []).map(s => (
-                <a key={s.href} className="pill" href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
-              ))}
+            <div className="social-pills">
+              {(site.socials || []).map(s => {
+                const Icon = iconMap[s.icon]
+                return (
+                  <a
+                    key={s.href}
+                    className="social-pill"
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={s.label}
+                  >
+                    {Icon && <Icon className="social-pill-icon" />}
+                    <span>{s.label}</span>
+                  </a>
+                )
+              })}
             </div>
           </div>
           {sent && <div className="success-message">Your message has been sent!</div>}

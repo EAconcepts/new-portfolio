@@ -12,14 +12,27 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="kicker">Available for work</div>
-          <h1 className="h1">{site.role || "Full‑Stack Developer"}</h1>
+          <div className="kicker">Open to new opportunities</div>
+          <h1 className="h1">{site.role || "Full‑Stack Engineer"}</h1>
           <p className="sub">
-            I build delightful, performant web apps end‑to‑end — React on the
-            front, Node on the back, and databases that won’t let you down.
+            Full-Stack Engineer with 4+ years building scalable products
+            end&#8209;to&#8209;end. I lead teams, architect backends, and ship
+            polished UIs — from React &amp; Next.js on the front to NestJS,
+            PostgreSQL &amp; Redis on the back.
           </p>
+
+          {/* Stats bar */}
+          <div className="stats-bar">
+            {(site.stats || []).map((s) => (
+              <div className="stat-item" key={s.label}>
+                <span className="stat-value">{s.value}</span>
+                <span className="stat-label">{s.label}</span>
+              </div>
+            ))}
+          </div>
+
           <div className="pills">
-            {(site.tech || []).slice(0, 10).map((t) => (
+            {(site.tech || []).slice(0, 15).map((t) => (
               <span className="pill" key={t}>
                 {t}
               </span>
@@ -49,11 +62,6 @@ export default function Hero() {
             src={avatar}
             style={{ width: "100%", objectFit: "cover", objectPosition: "top" }}
           />
-          {/* Replace with your photo */}
-          {/* {site.name
-            ?.split(" ")
-            .map((s) => s[0])
-            .join("") || "YN"} */}
         </motion.div>
       </div>
     </section>

@@ -1,15 +1,18 @@
-/* Minimal, classy black ↔ white theme with subtle accent */
+/* ═══════════════════════════════════════════
+   Design Tokens
+═══════════════════════════════════════════ */
 :root{
   --bg: #0b0d10;
   --bg-elev: #111418;
   --text: #f5f7fa;
   --muted: #aab2bf;
-  --accent: #e5e7eb; /* soft light accent */
+  --accent: #e5e7eb;
   --card: #0f1216;
   --border: #1a1f27;
   --pill-bg: #151922;
   --link: #e5e7eb;
   --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 @media (prefers-color-scheme: light){
   :root{
@@ -26,24 +29,30 @@
   }
 }
 
+/* ═══════════════════════════════════════════
+   Reset & Base
+═══════════════════════════════════════════ */
 *{box-sizing:border-box}
 html,body,#root{height:100%}
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,"Noto Sans", "Helvetica Neue", Arial,"Apple Color Emoji","Segoe UI Emoji";
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   line-height:1.6;
 }
 
 a{ color: var(--link); text-decoration: none; }
-a:hover{ opacity:.9 }
+a:hover{ opacity:.85 }
 
 .container{
   width:min(1100px, 92%);
   margin:0 auto;
 }
 
+/* ═══════════════════════════════════════════
+   Navbar
+═══════════════════════════════════════════ */
 .nav{
   position: sticky;
   top:0;
@@ -66,6 +75,9 @@ a:hover{ opacity:.9 }
 .nav-links a{ padding:8px 10px; border-radius:10px }
 .nav-links a.active, .nav-links a:hover{ background:var(--pill-bg) }
 
+/* ═══════════════════════════════════════════
+   Hero
+═══════════════════════════════════════════ */
 .hero{
   padding: 96px 0 40px;
 }
@@ -77,12 +89,12 @@ a:hover{ opacity:.9 }
 @media (max-width: 900px){
   .hero-grid{ grid-template-columns: 1fr; }
 }
-.kicker{ color: var(--muted); font-size:14px; letter-spacing:.2em; text-transform:uppercase }
+.kicker{ color: var(--muted); font-size:14px; letter-spacing:.2em; text-transform:uppercase; margin-bottom:6px; }
 .h1{
   font-size: clamp(34px, 6vw, 60px);
   line-height:1.05; margin:10px 0 16px; letter-spacing:-.02em;
 }
-.sub{ font-size:18px; color: var(--muted); max-width: 60ch }
+.sub{ font-size:18px; color: var(--muted); max-width: 60ch; line-height:1.7; }
 .cta-row{ display:flex; flex-wrap:wrap; gap:12px; margin-top: 22px }
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -90,11 +102,62 @@ a:hover{ opacity:.9 }
   background: var(--card);
   box-shadow: var(--shadow);
   font-weight:600;
+  transition: transform .15s ease, opacity .15s ease;
 }
+.btn:hover{ transform: translateY(-1px); opacity:1; }
 .btn.ghost{ background: transparent; box-shadow:none }
 .pills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px }
 .pill{ font-size:13px; padding:6px 10px; border-radius:999px; background:var(--pill-bg); border:1px solid var(--border) }
 
+/* ═══════════════════════════════════════════
+   Stats Bar
+═══════════════════════════════════════════ */
+.stats-bar{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 24px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  width: fit-content;
+  max-width: 100%;
+}
+.stat-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 22px;
+  border-right: 1px solid var(--border);
+  background: var(--card);
+  min-width: 90px;
+  transition: background .2s ease;
+}
+.stat-item:last-child{ border-right: none; }
+.stat-item:hover{ background: var(--bg-elev); }
+.stat-value{
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
+}
+.stat-label{
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin-top: 3px;
+  text-align: center;
+}
+@media (max-width: 640px){
+  .stats-bar{ width: 100%; }
+  .stat-item{ flex: 1; min-width: 0; padding: 12px 8px; }
+  .stat-value{ font-size: 18px; }
+}
+
+/* ═══════════════════════════════════════════
+   Avatar
+═══════════════════════════════════════════ */
 .avatar{
   width: 220px; height:220px; border-radius:22px; background:linear-gradient(135deg, #1f2937, #0b0d10);
   border:1px solid var(--border); box-shadow: var(--shadow);
@@ -103,6 +166,9 @@ a:hover{ opacity:.9 }
   margin-left:auto;
 }
 
+/* ═══════════════════════════════════════════
+   Sections
+═══════════════════════════════════════════ */
 .section{ padding: 56px 0 }
 .section-header{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px }
 .section-title{ font-size: clamp(24px, 3.2vw, 32px) }
@@ -125,27 +191,19 @@ a:hover{ opacity:.9 }
   border-radius:18px;
   padding:18px;
   box-shadow: var(--shadow);
-  transition: transform .2s ease;
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.card:hover{ transform: translateY(-2px) }
-
-.footer{
-  border-top:1px solid var(--border);
-  padding: 30px 0;
-  color: var(--muted);
-  font-size:14px;
-  text-align:center;
-}
+.card:hover{ transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.45); }
 
 hr.sep{ border: none; height:1px; background: var(--border); margin: 24px 0 }
 
 .badge{ font-size:12px; padding:4px 8px; border:1px solid var(--border); border-radius:8px; background:var(--pill-bg) }
 .link-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px }
 
-/* Contact */
-.form{
-  display:grid; gap:12px;
-}
+/* ═══════════════════════════════════════════
+   Contact
+═══════════════════════════════════════════ */
+.form{ display:grid; gap:12px; }
 .input, .textarea{
   width:100%;
   padding:12px 14px;
@@ -154,15 +212,76 @@ hr.sep{ border: none; height:1px; background: var(--border); margin: 24px 0 }
   border:1px solid var(--border);
   color: var(--text);
   font-size:15px;
+  font-family: var(--font);
 }
 .textarea{ min-height:120px; resize:vertical }
-
-.success-message {
-  color: #4caf50;
-  margin-top: 10px;
+.input:focus, .textarea:focus{
+  outline: none;
+  border-color: var(--muted);
 }
 
-.error-message {
-  color: #f44336;
-  margin-top: 10px;
+/* Social pills in contact */
+.social-pills{ display:flex; flex-wrap:wrap; gap:8px; }
+.social-pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--pill-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: background .15s ease, transform .15s ease;
+  font-weight: 500;
+}
+.social-pill:hover{
+  background: var(--bg-elev);
+  transform: translateY(-1px);
+  opacity: 1;
+}
+.social-pill-icon{ font-size: 15px; flex-shrink: 0; }
+
+.success-message{ color: #4caf50; margin-top: 10px; }
+.error-message{ color: #f44336; margin-top: 10px; }
+
+/* ═══════════════════════════════════════════
+   Footer
+═══════════════════════════════════════════ */
+.footer{
+  border-top:1px solid var(--border);
+  padding: 28px 0;
+  color: var(--muted);
+  font-size:14px;
+}
+.footer-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-socials{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.social-icon-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--muted);
+  font-size: 17px;
+  transition: color .15s ease, background .15s ease, transform .15s ease;
+}
+.social-icon-link:hover{
+  color: var(--text);
+  background: var(--bg-elev);
+  transform: translateY(-2px);
+  opacity: 1;
 }
