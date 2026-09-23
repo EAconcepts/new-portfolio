@@ -54,7 +54,7 @@ export const site = {
       ],
       links: {
         live: "https://posmartapp.vercel.app/",
-        repo: "https://github.com/EAconcepts/posmart-frontend",
+        repo: null,
       },
     },
     {
@@ -68,7 +68,7 @@ export const site = {
       ],
       links: {
         live: "https://penstribe-automation.vercel.app/",
-        repo: "https://github.com/EAconcepts/penstribe-automation",
+        repo: null,
       },
     },
     {
@@ -97,7 +97,7 @@ export const site = {
       ],
       links: {
         live: "https://sahara-markeplace.vercel.app/",
-        repo: "https://github.com/EAconcepts/sahara-markeplace",
+        repo: null,
       },
     },
     {
@@ -111,7 +111,7 @@ export const site = {
       ],
       links: {
         live: null,
-        repo: "https://github.com/EAconcepts/raffle-backend",
+        repo: null,
       },
     },
   ],
