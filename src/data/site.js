@@ -38,7 +38,7 @@ export const site = {
         "Cut infrastructure spend by migrating Redis to Upstash free tier",
       ],
       links: {
-        live: null,
+        live: "https://bookivoapp.com",
         repo: null,
       },
     },
@@ -53,22 +53,8 @@ export const site = {
         "JWT auth with role-based access control",
       ],
       links: {
-        live: "https://posmart.kyrosautomobile.com/",
+        live: "https://posmartapp.vercel.app/",
         repo: "https://github.com/EAconcepts/posmart-frontend",
-      },
-    },
-    {
-      title: "KyrosAutomobile Raffle Draw",
-      tagline: "Gamified raffle system with 1M+ numbers, payment integration, and secure admin dashboard",
-      stack: ["React", "Node.js", "MySQL", "Express"],
-      highlights: [
-        "Fairness and transparency ensured across all draws",
-        "Reference generation, verification & email notifications",
-        "Robust audit trail and admin dashboard",
-      ],
-      links: {
-        live: "https://kyrosautomobile.com/",
-        repo: "https://github.com/EAconcepts/raffle-backend",
       },
     },
     {
@@ -81,7 +67,7 @@ export const site = {
         "Automated emails, invoices & cron-job reminders",
       ],
       links: {
-        live: "http://penstribeautomate.com/",
+        live: "https://penstribe-automation.vercel.app/",
         repo: "https://github.com/EAconcepts/penstribe-automation",
       },
     },
@@ -96,7 +82,7 @@ export const site = {
         "Scoped and architected the full website rebuild with a cost-conscious hosting & CMS strategy",
       ],
       links: {
-        live: "https://morgancapital.ng",
+        live: "https://morgan-capital.vercel.app/",
         repo: null,
       },
     },
@@ -112,6 +98,20 @@ export const site = {
       links: {
         live: "https://sahara-markeplace.vercel.app/",
         repo: "https://github.com/EAconcepts/sahara-markeplace",
+      },
+    },
+    {
+      title: "KyrosAutomobile Raffle Draw",
+      tagline: "Gamified raffle system with 1M+ numbers, payment integration, and secure admin dashboard",
+      stack: ["React", "Node.js", "MySQL", "Express"],
+      highlights: [
+        "Fairness and transparency ensured across all draws",
+        "Reference generation, verification & email notifications",
+        "Robust audit trail and admin dashboard",
+      ],
+      links: {
+        live: null,
+        repo: "https://github.com/EAconcepts/raffle-backend",
       },
     },
   ],
